@@ -1,0 +1,13 @@
+﻿Build started 11/6/2014 1:20:55 PM.
+     1>Project "D:\Projects\machine_learning\ForexPredictor\FPDLL\FPDLL\FPDLL.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jay\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Libraries\FPDLL.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft" libmx.lib libmat.lib libeng.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jay\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Libraries\FPDLL.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jay\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Libraries\FPDLL.lib" /MACHINE:X64 /DLL x64\Debug\dllmain.obj
+         x64\Debug\FPDLL.obj
+         x64\Debug\stdafx.obj
+            Creating library C:\Users\Jay\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Libraries\FPDLL.lib and object C:\Users\Jay\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Libraries\FPDLL.exp
+         FPDLL.vcxproj -> C:\Users\Jay\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Libraries\FPDLL.dll
+     1>Done Building Project "D:\Projects\machine_learning\ForexPredictor\FPDLL\FPDLL\FPDLL.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.36
