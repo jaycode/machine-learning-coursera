@@ -13,9 +13,16 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="logs">
+      <UniqueIdentifier>{ef41b8e6-c92c-4236-91c7-b81e2afcdeb2}</UniqueIdentifier>
+      <Extensions>log;txt</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="logs\all.log">
+      <Filter>logs</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -35,5 +42,8 @@
     <ClCompile Include="FPDLLTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="easylogging-config.conf" />
   </ItemGroup>
 </Project>

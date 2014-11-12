@@ -146,7 +146,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="easylogging++.h" />
+    <ClInclude Include="ForexPredictor.h" />
     <ClInclude Include="FPDLL.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="mql.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -166,6 +170,8 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="FPDLL.cpp" />
+    <ClCompile Include="ForexPredictor.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -1,0 +1,1 @@
+To setup Forex Predictor, run "setup" from Matlab. It will create all the necessary config and database for the app.

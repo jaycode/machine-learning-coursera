@@ -1,9 +1,8 @@
-// stdafx.h : include file for standard system include files,
-// or project specific include files that are used frequently, but
-// are changed infrequently
-//
+#ifndef STDAFXH
+#define STDAFXH
 
 #pragma once
+
 
 #include "targetver.h"
 
@@ -11,13 +10,16 @@
 // Windows Header Files:
 #include <windows.h>
 
-
-
-// TODO: reference additional headers your program requires here
-#include "FPDLL.h"
 #include <iostream>
 #include <cstdlib>
-// #include <stdio.h>
-// #include <string.h>
+#include <string>
+#include <sstream> // needed in Logger.h for wstringstream
 #include "engine.h"
 #define  BUFSIZE 256
+
+// #include "mql.h"
+#include "Logger.h"
+#include "ForexPredictor.h"
+#include "FPDLL.h"
+
+#endif

@@ -16,4 +16,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <windows.h> 
+#include <string>
+#include "mql.h"
 #include "FPDLLTest.h"

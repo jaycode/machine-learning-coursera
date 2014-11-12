@@ -2,10 +2,13 @@
 //
 
 #include "stdafx.h"
-const char * MATLAB_PROJECT_DIR = "D:\\Projects\\machine_learning\\ForexPredictor\\FPWithMatlab\\App";
+
+ForexPredictor fp;
+Logger logger;
 
 const bool Predict(double x[], double ask, double positions[], double budget, bool& signal, double& take_profit, double& stop_loss, double& volume)
 {
+	fp.Init();
 	Engine *ep;
 
 	if (!(ep = engOpen("\0"))) {
@@ -15,28 +18,30 @@ const bool Predict(double x[], double ask, double positions[], double budget, bo
 	return true;
 }
 
-const bool Learn(int size, double X[][10], double bid[], double ask[], time_t time[])
+const bool Learn(int size, double X[][15], double bid[], double ask[], time_t times[])
+// const bool Learn(int size, double X[][15])
 {
-	Engine *ep;
+	logger << L"Start Learning\n";
+	logger << L"First bid: " << bid[0] << L"\n";
+	logger << L"First ask: " << ask[0] << L"\n";
+	logger << L"First time: " << times[0] << L"\n";
+	fp.Init();
+	return fp.Learn(size, X, bid, ask, times);
+}
 
-	if (!(ep = engOpen("\0"))) {
-		fprintf(stderr, "\nCan't start MATLAB engine\n");
-		return false;
-	}
-	char s[100];
-	sprintf_s(s, "cd('%s');", MATLAB_PROJECT_DIR);
-	engEvalString(ep, s);
+// Make sure to pass L"" otherwise weird things would happen (i.e. buffer not cleared).
+const void GetLog(wchar_t *log_str = L"")
+{
+	//--- parameters check
+	if (log_str == NULL) return;
+	//--- replace it
+	memcpy(log_str, logger.read().c_str(), wcslen(logger.read().c_str())*sizeof(wchar_t)+1);
+	logger.clear();
+}
 
-	// Write the variables
-	mxArray *input_X = NULL, *input_bid = NULL, *input_ask = NULL, *input_time = NULL;
-	input_X = mxCreateDoubleMatrix(1, 10, mxREAL);
-	// memcpy((char *)mxGetPr(T), (char *)time, 10 * sizeof(double));
-	engPutVariable(ep, "X", input_X);
-
-	// Call the learn function in Matlab
-	engEvalString(ep, "learn(X, bid, ask, time);");
-
-	return true;
+const void GetLog(std::wstring log_str)
+{
+	log_str = logger.read();
 }
 
 // ==================================================
@@ -44,11 +49,14 @@ const bool Learn(int size, double X[][10], double bid[], double ask[], time_t ti
 // ==================================================
 const int GetAnswerOfLife()
 {
+	fp.Init();
+	logger << L"Just got an answer of life.";
 	return 42;
 }
 
 const double RunMatlabFunction()
 {
+	fp.Init();
 	Engine *ep;
 
 	/*
@@ -68,11 +76,29 @@ const double RunMatlabFunction()
 
 	mxArray *T = NULL, *result = NULL;
 	char s[100];
-	sprintf_s(s, "cd('%s');", MATLAB_PROJECT_DIR);
+	sprintf_s(s, "cd('%s');", fp.MATLAB_PROJECT_DIR);
 	engEvalString(ep, s);
 	engEvalString(ep, "ans = HelloWorld(1);");
 	mxArray *ans = engGetVariable(ep, "ans");
 	return *mxGetPr(ans);
+}
+
+
+void StringTest(wchar_t *str)
+{
+	str = L"test";
+}
+
+void fnReplaceString(wchar_t *text, wchar_t *from, wchar_t *to)
+{
+	wchar_t *cp;
+	//--- parameters check
+	if (text == NULL || from == NULL || to == NULL) return;
+	if (wcslen(from) != wcslen(to))             return;
+	//--- search for substring
+	if ((cp = wcsstr(text, from)) == NULL)         return;
+	//--- replace it
+	memcpy(cp, to, wcslen(to)*sizeof(wchar_t));
 }
 // ==================================================
 
