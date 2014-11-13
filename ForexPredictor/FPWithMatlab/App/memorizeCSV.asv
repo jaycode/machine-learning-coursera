@@ -1,8 +1,13 @@
-%% Get from CSV
-%% Entered into SQL
-function output = memorizeCSV()
-    addpath('mksqlite');
-    mksqlite('open','forex_predictor.db');
-    mksqlite('INSERT INTO x_daily (ID, time) VALUES (NULL, 1.123)');
-    output = 1;
+% Get from CSV
+% Entered into SQL
+function output = memorizeCSV(table_name, csv_location)
+    X = dlmread(csv_location, ',', 1, 0);
+    X_size = size(X);
+    for (i=1;i
+    fid = fopen(csv_location, 'r');
+    fields = textscan(fid, '%[^,],%[^,],%[^,\r\n]', 1);
+    fclose(fid);
+    
+    memorize(table_name, fields, X);
+    output = true;
 end

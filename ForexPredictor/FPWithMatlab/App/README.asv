@@ -3,8 +3,8 @@ To setup Forex Predictor, run "setup" from Matlab. It will create all the necess
 STRATEGY TESTER MODE
 1. Export training_x.csv and training_y.csv from MetaTrader by running the script ForexPredictor-Export.mq5.
 2. Copy & paste the csvs into suitable dirs in Matlab.
-3. From Matlab, run memorizeCSV('training_x.csv', 'try_x') and memorizeCSV('training_y.csv', 'try_y') to input the rows into Sqlite database.
-4. From Matlab, run learn.m('try') to allow it to learn from database from 'try' tables.
+3. From Matlab, run memorizeCSV(training_x.csv) and to input the rows into Sqlite database.
+4. From Matlab, run learn.m to allow it to learn from database.
 5. From Matlab, run "predict('cross-validation_y.csv')", to output predictions.csv - copy this file to MQL5/Files directory.
 6. From MetaTrader, run ForexPredictor/StrategyTester/Experts/ApplyPredictions.mq5 in Strategy Tester.
 

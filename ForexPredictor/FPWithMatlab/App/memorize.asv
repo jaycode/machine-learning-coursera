@@ -1,0 +1,26 @@
+% Input variants to SQL
+function output = memorize(table_name, fields, values)
+    addpath('mksqlite');
+    mksqlite('open','forex_predictor.db');
+    fields_text = fields{1};
+    create_fields_text = strcat('id INTEGER PRIMARY KEY AUTOINCREMENT,',fields{1});
+    for i=2:size(fields,2)
+        fields_text = strcat(fields_text, ',', fields{i});
+        create_fields_text = strcat(create_fields_text, ',time DATETIME,', fields{i}, ' DOUBLE');
+    end
+    values_text = '';
+    for i=1:size(values, 1)
+        value_text = strcat('(', num2str(values(i, 1)));
+        for j=1:size(values,2)
+            value_text = strcat(value_text, ',', num2str(values(i, j)));
+        end
+        value_text = strcat(value_text, ')');
+        values_text = strcat(values_text, '\n', value_text);
+    end
+    sql_create = sql'CREATE TABLE IF NOT EXISTS ' + table_name + '('+create_fields_text+')';
+    sql_insert = 'INSERT INTO '+table_name+' ('+fields_text+') VALUES '+values_text;
+    keyboard;
+    mksqlite(sql_create);
+    mksqlite(sql_insert);
+    output = true;
+end

@@ -9,21 +9,23 @@ function output = learn(tableset_name)
     input_layer_size  = 13;
     hidden_layer_size = 4;
     num_labels = 2;
-    directory = 't0.5n5';
+    directory = 't0.2n5';
 
     fprintf('\nLoading training data ...\n')
 
+    keyboard;
+    % X = dlmread([directory, '/training_x.csv'], ',', 1, 0);
     data = mksqlite(['SELECT * FROM `', tableset_name, '_x`']);
     fields = fieldnames(data);
-    caller = '';
-    for i=3:size(fields,1)
-        caller = [caller, ' x.', fields{i}];
-    end
-    caller = sprintf('cell2mat(arrayfun(@(x) [%s], data, ''UniformOutput'', false))', caller);
-    X = eval(caller);
-        
-    data = mksqlite(['SELECT signal FROM `', tableset_name, '_y`']);
-    y = arrayfun(@(x) [x.signal], data);
+    
+    eval(['data(1).', fields{3}])
+    keyboard;
+    X = cell2mat(arrayfun(@(x) [x.ema3ema30], data, 'UniformOutput', false));
+    
+    fid = fopen([directory, '/training_y.csv']);
+    exp=textscan(fid, '%d %f %f %f %f %s', 'HeaderLines', 1, 'Delimiter', ',');
+    fclose(fid);
+    y = exp{1};
 
     initial_Theta1 = randInitializeWeights(input_layer_size, hidden_layer_size);
     initial_Theta2 = randInitializeWeights(hidden_layer_size, num_labels);
@@ -64,17 +66,17 @@ function output = learn(tableset_name)
 
     fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
-    Xval = dlmread([directory, '/cross-validation_x.csv'], ',', 1, 1);
+    Xval = dlmread([directory, '/cross-validation_x.csv'], ',', 1, 0);
     fid = fopen([directory, '/cross-validation_y.csv']);
     exp=textscan(fid, '%d %f %f %f %f %s', 'HeaderLines', 1, 'Delimiter', ',');
     fclose(fid);
-    yval = exp{2};
+    yval = exp{1};
 
     [pred_val, confidence_val] = predict(Theta1, Theta2, Xval);
 
     fprintf('\nCrossvalidation Set Accuracy: %f\n', mean(double(pred_val == yval)) * 100);
 
-    if ~exist([directory, '/result'], 'dir')
+    if ~exist('/result', 'dir')
         mkdir([directory, '/result']);
     end
     csvwrite([directory, '/result/Theta1.csv'],Theta1);
