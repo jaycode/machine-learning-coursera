@@ -5,7 +5,7 @@ STRATEGY TESTER MODE
 2. Copy & paste the csvs into suitable dirs in Matlab.
 3. From Matlab, run memorizeCSV('training_x.csv', 'try_x') and memorizeCSV('training_y.csv', 'try_y') to input the rows into Sqlite database.
 4. From Matlab, run learn.m('try') to allow it to learn from database from 'try' tables.
-5. From Matlab, run "predict('cross-validation_y.csv')", to output predictions.csv - copy this file to MQL5/Files directory.
+5. From Matlab, run "processCSV('cross-validation_y.csv')", to output predictions.csv - copy this file to MQL5/Files directory.
 6. From MetaTrader, run ForexPredictor/StrategyTester/Experts/ApplyPredictions.mq5 in Strategy Tester.
 
 LIVE MODE
