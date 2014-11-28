@@ -82,7 +82,7 @@ for i = 1:m
 
   error_train(i) = mean(double(pred1 == y(1:i))) * 100;
   error_val(i) = mean(double(pred2 == yval)) * 100;
-  fprintf('trained %d', i);
+  fprintf('trained %d / %d', i, m);
 end
 
 

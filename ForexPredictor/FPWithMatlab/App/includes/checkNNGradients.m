@@ -23,7 +23,7 @@ Theta2 = debugInitializeWeights(num_labels, hidden_layer_size);
 % Reusing debugInitializeWeights to generate X
 X  = debugInitializeWeights(m, input_layer_size - 1);
 y  = 1 + mod(1:m, num_labels)';
-y = y.-1;
+y = y-1;
 
 % Unroll parameters
 nn_params = [Theta1(:) ; Theta2(:)];

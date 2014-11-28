@@ -91,7 +91,7 @@ reg = lambda / (2 * m) * reg;
 Beta = 0;
 
 % ==================================
-% CONVERTING NUMBERS TO POSITONS
+% CONVERTING NUMBERS TO POSITIONS
 % ==================================
 % y_matrix = zeros(m, num_labels);
 % for i = 1:m

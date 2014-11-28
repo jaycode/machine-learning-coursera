@@ -6,15 +6,19 @@ close all; clc
 drop_tables
 fp1 = ForexPredictor('forex_predictor.db', 'try', 5);
 fp1.setPredictionCSVPath('predictions.csv');
-fp1.memorizeCSV('t0.5n5/training_x.csv', 'x');
-fp1.memorizeCSV('t0.5n5/training_y.csv', 'y');
-fp1.predictCSV('t0.5n5/cross-validation_x.csv');
+fp1.memorizeCSV('inputs/training_inputs.csv', 'inputs');
+fp1.memorizeCSV('inputs/training_targets.csv', 'targets');
+fp1.memorizeCSV('inputs/testing_inputs.csv', 'inputs');
+fp1.memorizeCSV('inputs/testing_targets.csv', 'targets');
+fp1.setupXY('inputs', 'targets');
+% fp1.experiment('inputs/testing_inputs.csv', 'inputs/testing_targets.csv');
+fp1.predictCSV('inputs/testing_inputs.csv', 'outputs');
 
 % We can later compare multiple forex prediction sessions:
 % fp2 = ForexPredictor('forex_predictor.db', 'try');
-% fp2.memorizeCSV('t0.5n5/training_x.csv', 'x');
-% fp2.memorizeCSV('t0.5n5/training_y.csv', 'y');
-% fp2.predictCSV('t0.5n5/cross-validation_x.csv');
+% fp2.memorizeCSV('inputs/training_x.csv', 'x');
+% fp2.memorizeCSV('inputs/training_targets.csv', 'targets');
+% fp2.predictCSV('inputs/testing_x.csv');
 
 % On live expert advisor mode, process as follows:
 % fp3 = ForexPredictor('forex_predictor.db', 'try');
