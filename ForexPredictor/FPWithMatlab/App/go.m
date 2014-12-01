@@ -4,8 +4,8 @@ addpath('includes');
 close all; clc
 
 drop_tables
-fp1 = ForexPredictor('forex_predictor.db', 'try', 5);
-fp1.setPredictionCSVPath('predictions.csv');
+fp1 = ForexPredictor3Labels('forex_predictor.db', 'try', 5);
+fp1.dropXY();
 fp1.memorizeCSV('inputs/training_inputs.csv', 'inputs');
 fp1.memorizeCSV('inputs/training_targets.csv', 'targets');
 fp1.memorizeCSV('inputs/testing_inputs.csv', 'inputs');

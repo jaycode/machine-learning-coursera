@@ -13,9 +13,8 @@ classdef (Abstract) ForexPredictor
         upper_threshold = 0.5;
         lower_threshold = -1;
         training_limit = 600; % Limit of training rows per target signal (i.e. x number of buy and sell signals each).
-        hidden_layer_size = 5; % Number of neurons in hidden layer.
-        lambda = 3; % Learning rate, larger means better generalization, lower means better training performance.
-        training_iterations = 100; % How many times we ANN should repeat readjusting its weights.
+        hidden_layer_size = 5;
+        lambda = 3;
     end
     
     %% Public methods:
